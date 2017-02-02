@@ -2,6 +2,13 @@
 	$dbhost = 'localhost:3306';
 	$dbuser = 'jecc';
 	$dbpass = 'ccej';
+	
+	function encoding_fix($conn) {
+		mysql_query("SET character_set_results=utf8", $conn);
+    	mb_language('uni'); 
+    	mb_internal_encoding('UTF-8');
+    	mysql_query("set names 'utf8'",$conn);
+	}
 
 	function add_user($data) {
 		GLOBAL $dbhost;
@@ -10,6 +17,7 @@
 
 		// Establishing Connection with Server by passing server_name, user_id and password as a parameter
 		$connection = mysql_connect($dbhost, $dbuser, $dbpass);
+		encoding_fix($connection);
 		// Selecting Database
 		$db = mysql_select_db("jecc_suivi", $connection);
 		// To protect MySQL injection for Security purpose
@@ -43,6 +51,7 @@
 
 		// Establishing Connection with Server by passing server_name, user_id and password as a parameter
 		$connection = mysql_connect($dbhost, $dbuser, $dbpass);
+		encoding_fix($connection);
 		// Selecting Database
 		$db = mysql_select_db("jecc_suivi", $connection);
 		$departement = stripslashes($departement);
@@ -62,6 +71,7 @@
 
 		// Establishing Connection with Server by passing server_name, user_id and password as a parameter
 		$connection = mysql_connect($dbhost, $dbuser, $dbpass);
+		encoding_fix($connection);
 		// Selecting Database
 		$db = mysql_select_db("jecc_suivi", $connection);
 		$usr_email = stripslashes($usr_email);
@@ -84,6 +94,7 @@
 
 		// Establishing Connection with Server by passing server_name, user_id and password as a parameter
 		$connection = mysql_connect($dbhost, $dbuser, $dbpass);
+		encoding_fix($connection);
 		// Selecting Database
 		$db = mysql_select_db("jecc_suivi", $connection);
 		$usr_name = stripslashes($usr_name);
@@ -106,6 +117,7 @@
 		GLOBAL $dbpass;
 		// Establishing Connection with Server by passing server_name, user_id and password as a parameter
 		$connection = mysql_connect($dbhost, $dbuser, $dbpass);
+		encoding_fix($connection);
 		// Selecting Database
 		$db = mysql_select_db("jecc_suivi", $connection);
 		// To protect MySQL injection for Security purpose
@@ -130,6 +142,7 @@
 		GLOBAL $dbpass;
 		// Establishing Connection with Server by passing server_name, user_id and password as a parameter
 		$connection = mysql_connect($dbhost, $dbuser, $dbpass);
+		encoding_fix($connection);
 		// Selecting Database
 		$db = mysql_select_db("jecc_suivi", $connection);
 		// To protect MySQL injection for Security purpose
