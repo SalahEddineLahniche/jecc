@@ -2,7 +2,7 @@
 
 ## Setup a web server
 
-- For more info goto [link][https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-14-04]
+- For more info goto [link](https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-14-04)
 
 - install `virtualbox` and `vagrant`
 
@@ -78,7 +78,7 @@
 
 ## Testing
 
-Goto this [link][http://jecc.ma.web]
+Goto this [link](http://jecc.ma.web)
 
 you should have it functionning ...
 
