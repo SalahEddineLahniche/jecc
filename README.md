@@ -67,6 +67,15 @@
 
   - go to `etc/hosts` and add the following line `192.168.33.10 jecc.ma.web`
 
+## Setup mysql
+
+- `mysql --user=root --password=toor` note that i used these credentials when i installed mysql
+- with in mysql shell `create user 'jecc'@'%' identified by 'ccej';`
+- `grant all privileges on *.* to 'jecc'@'%' identified by 'ccej' with grant option;`
+- You can use MySQL Workbench as mysql client
+- goto [link][http://jecc.ma.web/suivi/prepare-the-database.php] in order to setup the database
+- `chmod 700 /vagrant/suivi/prepare-the-database.php` to prevent further access to this file.
+
 ## Testing
 
 Goto this [link][http://jecc.ma.web]
