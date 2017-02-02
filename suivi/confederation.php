@@ -13,8 +13,8 @@
 <html>
 	<?php require 'head.php';?>
 	<body>
-		<?php $active = 4; require 'header.php';?>
-		<?php $redirect = "confederationd"; require 'login-form.php';?>
+		<?php $active = 3; require 'header.php';?>
+		<?php $redirect = "confederation"; require 'login-form.php';?>
 
 
 

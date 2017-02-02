@@ -12,8 +12,8 @@
 <html>
 	<?php require 'head.php';?>
 	<body>
-		<?php $active = 1; require 'header.php';?>
-		<?php $redirect = "general"; require 'login-form.php';?>
+		<?php $active = 5; require 'header.php';?>
+		<?php $redirect = "communication"; require 'login-form.php';?>
 
 		<div class="container">
 			<div class="new-post">
@@ -55,7 +55,6 @@
 				</div>
 			</div>
 		</div>
-
 
 		<?php require 'footer.php';?>
 	</body>

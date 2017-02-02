@@ -17,6 +17,7 @@
 				<li <?php if($active == 2) {echo "class=\"active\"";}?> ><a href="projets.php">Projets</a></li>
 				<li <?php if($active == 3) {echo "class=\"active\"";}?> ><a href="confederation.php">Confédération</a></li>
 				<li <?php if($active == 4) {echo "class=\"active\"";}?> ><a href="prospection.php">Prospection</a></li>
+				<li <?php if($active == 5) {echo "class=\"active\"";}?> ><a href="communication.php">Communication</a></li>
 			</ul>
 			<p class="navbar-text navbar-right actions">
 			<?php 

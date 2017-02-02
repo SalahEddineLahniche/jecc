@@ -49,6 +49,14 @@
 					</div>
 				</a>
 			</div>
+
+			<div class="col-lg-offset-4 -col-xs-12 col-sm-6 col-md-6 col-lg-4">
+				<a href="communication.php">
+					<div class="pole">
+						<h1>Communication</h1>
+					</div>
+				</a>
+			</div>
 		</div>
 
 		<?php require 'footer.php';?>
