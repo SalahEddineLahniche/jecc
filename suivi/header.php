@@ -22,7 +22,7 @@
 			<p class="navbar-text navbar-right actions">
 			<?php 
 				if(isset($_SESSION['login_email'])){
-					echo 'Welcome <a class="navbar-link" data-id="' . $id . '" data-role="' . $role . '" href="' . $departement . '.php">' . $name . '</a> !';
+					echo 'Welcome <a class="navbar-link" data-id="' . $id . '" data-role="' . $role . '" href="' . ($role == 'toor' ? 'admin' : $departement) . '.php">' . $name . '</a> !';
 					echo '<a class="navbar-link" href="signout.php"> Se deconnecter</a>';
 					// header("location: {$_SESSION['departement']}.php");
 				}

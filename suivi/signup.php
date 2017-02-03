@@ -39,10 +39,11 @@
 						  	<div class="input-group">
 						  		<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
 								<select class="form-control" id="dep" name="dep" placeholder="Selectionner ton departement">
-								  <option>Générale</option>
-								  <option>Projets</option>
-								  <option>Confédération</option>
-								  <option>Prospection</option>
+								  <option value='general'>Générale</option>
+								  <option value='projets'>Projets</option>
+								  <option value='confederation'>Confédération</option>
+								  <option value='prospection'>Prospection</option>
+								  <option value='communication'>Communication</option>
 								</select>
 						  	</div>
 						  </div>

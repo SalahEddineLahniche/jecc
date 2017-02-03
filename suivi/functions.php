@@ -144,6 +144,54 @@
 		return $rslt['id'];
 	}
 
+	function activate_user($user_id, $activated) {
+		GLOBAL $dbhost;
+		GLOBAL $dbuser;
+		GLOBAL $dbpass;
+		// Establishing Connection with Server by passing server_name, user_id and password as a parameter
+		$connection = mysql_connect($dbhost, $dbuser, $dbpass);
+		encoding_fix($connection);
+		// Selecting Database
+		$db = mysql_select_db("jecc_suivi", $connection);
+		$user_id = stripslashes($user_id);
+		$user_id = mysql_real_escape_string($user_id);
+		$activated = stripslashes($activated);
+		$activated = mysql_real_escape_string($activated);
+		// SQL query to fetch information of registerd users and finds user match.
+		$query=mysql_query("UPDATE `users` SET `activated` = $activated WHERE `id` = $user_id;", $connection);
+		mysql_close($connection);
+		if (!$query) {
+			return false;
+		}
+		return true;
+	}
+
+	function get_users() {
+		GLOBAL $dbhost;
+		GLOBAL $dbuser;
+		GLOBAL $dbpass;
+		// Establishing Connection with Server by passing server_name, user_id and password as a parameter
+		$connection = mysql_connect($dbhost, $dbuser, $dbpass);
+		encoding_fix($connection);
+		// Selecting Database
+		$db = mysql_select_db("jecc_suivi", $connection);
+		// SQL query to fetch information of registerd users and finds user match.
+		$query=mysql_query("SELECT `users`.`id`, `users`.`role`, `users`.`uname`, `users`.`activated` FROM `users`;", $connection);
+		$row = mysql_fetch_assoc($query);
+		$rslt = array();
+		$i = 0;
+		while($row) {
+			$rslt[$i]['name'] = $row['uname'];
+			$rslt[$i]['activated'] = $row['activated'];
+			$rslt[$i]['id'] = $row['id'];
+			$rslt[$i]['role'] = $row['role'];
+			$i++;
+			$row = mysql_fetch_assoc($query);
+		}
+		mysql_close($connection);
+		return $rslt;
+	}
+
 	function user_email_exists($usr_email) {
 		GLOBAL $dbhost;
 		GLOBAL $dbuser;
