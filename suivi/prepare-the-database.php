@@ -40,6 +40,11 @@
 	if(! $retval ) {
 		die('Could not set id as a primary key in posts: ' . mysql_error());
 	}
+	$sql = "ALTER TABLE `jecc_suivi`.`posts` CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT ;";
+	$retval = mysql_query( $sql, $conn );
+	if(! $retval ) {
+		die('Could not set posts.id auto increment: ' . mysql_error());
+	}
 	$sql = 'CREATE TABLE IF NOT EXISTS `departements` (`id` int(11) NOT NULL, `dname` text NOT NULL);';
 	$retval = mysql_query( $sql, $conn );
 	if(! $retval ) {
@@ -50,7 +55,7 @@
 	if(! $retval ) {
 		die('Could not set id as a primary key in departements: ' . mysql_error());
 	}
-	$sql = 'INSERT INTO `departements` (`id`, `dname`) VALUES (0, \'general\'), (1, \'projets\'), (2, \'confederation\'), (3, \'prospection\'), (4, \'communication\');';
+	$sql = 'INSERT INTO `departements` (`id`, `dname`) VALUES (1, \'general\'), (2, \'projets\'), (3, \'confederation\'), (4, \'prospection\'), (5, \'communication\');';
 	$retval = mysql_query( $sql, $conn );
 	if(! $retval ) {
 		die('Could not fill departements: ' . mysql_error());

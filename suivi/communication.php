@@ -15,7 +15,7 @@
 		<?php $active = 5; require 'header.php';?>
 		<?php $redirect = "communication"; require 'login-form.php';?>
 
-		<?php $departement_id = 4; require 'posts.php';?>
+		<?php $departement_id = 5; require 'posts.php';?>
 
 		<?php require 'footer.php';?>
 	</body>

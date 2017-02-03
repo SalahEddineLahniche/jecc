@@ -71,6 +71,23 @@ body {
 	font-weight: bold;
 	margin-top: 7px;
 }
+
+.new-post input.form-control {
+	width: 60%;
+	float: left;
+	margin-right: 5px;
+}
+
+.new-post a {
+	float: left;
+	margin-top: 9px;
+}
+
+#loadmore {
+	margin: auto;
+	display: table;
+}
+
 .posts {
 	padding: 0px 20px;
 }

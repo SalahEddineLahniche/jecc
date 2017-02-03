@@ -12,7 +12,7 @@
 			<a href="index.php" class="navbar-brand text-brand">Suivi</a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
-			<ul class="nav navbar-nav">
+			<ul class="nav navbar-nav" data-active="<?= $active;?>">
 				<li <?php if($active == 1) {echo "class=\"active\"";}?> ><a href="general.php">Générale</a></li>
 				<li <?php if($active == 2) {echo "class=\"active\"";}?> ><a href="projets.php">Projets</a></li>
 				<li <?php if($active == 3) {echo "class=\"active\"";}?> ><a href="confederation.php">Confédération</a></li>
@@ -22,7 +22,7 @@
 			<p class="navbar-text navbar-right actions">
 			<?php 
 				if(isset($_SESSION['login_email'])){
-					echo 'Welcome <a class="navbar-link" href="' . $departement . '.php">' . $name . '</a> !';
+					echo 'Welcome <a class="navbar-link" data-id="' . $id . '" data-role="' . $role . '" href="' . $departement . '.php">' . $name . '</a> !';
 					echo '<a class="navbar-link" href="signout.php"> Se deconnecter</a>';
 					// header("location: {$_SESSION['departement']}.php");
 				}

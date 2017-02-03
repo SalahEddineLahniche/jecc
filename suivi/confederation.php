@@ -16,7 +16,7 @@
 		<?php $active = 3; require 'header.php';?>
 		<?php $redirect = "confederation"; require 'login-form.php';?>
 
-		<?php $departement_id = 2; require 'posts.php';?>
+		<?php $departement_id = 3; require 'posts.php';?>
 
 		<?php require 'footer.php';?>
 	</body>

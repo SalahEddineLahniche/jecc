@@ -82,3 +82,8 @@ Goto this [link](http://jecc.ma.web)
 
 you should have it functionning ...
 
+## Issues
+
+- known issue: files served truncated to browser
+  - solution (s): clear browser cache, open `/etc/nginx/nginx.conf` and change `sendfile` to `off`
+

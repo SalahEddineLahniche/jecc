@@ -10,7 +10,47 @@
     	mysql_query("set names 'utf8'",$conn);
 	}
 
-	function get_posts($departement_id) {
+	function add_post($post) {
+		GLOBAL $dbhost;
+		GLOBAL $dbuser;
+		GLOBAL $dbpass;
+		// Establishing Connection with Server by passing server_name, user_id and password as a parameter
+		$connection = mysql_connect($dbhost, $dbuser, $dbpass);
+		// Selecting Database
+		$db = mysql_select_db("jecc_suivi", $connection);
+		// To protect db from MySQL injection for Security purpose
+		$post['ptext'] = stripslashes($post['ptext']);
+		$post['ptext'] = mysql_real_escape_string($post['ptext']);
+		$post['plink'] = stripslashes($post['plink']);
+		$post['plink'] = mysql_real_escape_string($post['plink']);
+		// SQL query to fetch information of registerd users and finds user match.
+		$sql = "INSERT INTO `jecc_suivi`.`posts` (`user_id`, `ptext`, `plink`, `departement_id`, `pdate`) VALUES ('{$post['user_id']}', '{$post['ptext']}', '{$post['plink']}', {$post['departement_id']}, '{$post['pdate']}');";
+		$retval = mysql_query($sql, $connection);
+		mysql_close($connection);
+		if(! $retval ) {
+			return false;
+		}
+		return true;
+	}
+
+	function get_posts_count($departement_id) {
+		GLOBAL $dbhost;
+		GLOBAL $dbuser;
+		GLOBAL $dbpass;
+		// Establishing Connection with Server by passing server_name, user_id and password as a parameter
+		$connection = mysql_connect($dbhost, $dbuser, $dbpass);
+		// Selecting Database
+		$db = mysql_select_db("jecc_suivi", $connection);
+		// SQL query to fetch information of registerd users and finds user match.
+		$sql = "SELECT count(`id`) as total FROM `posts` WHERE `departement_id` = $departement_id;";
+		$query=mysql_query($sql, $connection);
+		$row = mysql_fetch_assoc($query);
+		$rslt = $row['total'];
+		mysql_close($connection);
+		return $rslt;
+	}
+
+	function get_posts($departement_id, $start = -1, $length = -1) {
 		GLOBAL $dbhost;
 		GLOBAL $dbuser;
 		GLOBAL $dbpass;
@@ -19,9 +59,19 @@
 		encoding_fix($connection);
 		// Selecting Database
 		$db = mysql_select_db("jecc_suivi", $connection);
-		// To protect MySQL injection for Security purpose
+		$add = "";
+		$start = (int)$start;
+		$length = (int)$length;
+		if ($start > 0) {
+			if ($length <= 0) {
+				$length = 18446744073709551615;
+			}
+			$add = " LIMIT $length OFFSET $start;";
+		} elseif ($length > 0) {
+			$add = " LIMIT $length;";
+		}
 		// SQL query to fetch information of registerd users and finds user match.
-		$sql = "SELECT posts.ptext, posts.pdate, posts.plink, posts.id, users.role, users.uname FROM `posts`, `users` WHERE posts.`departement_id` = $departement_id AND posts.user_id = users.id";
+		$sql = "SELECT posts.ptext, posts.pdate, posts.plink, posts.id, users.role, users.uname FROM `posts`, `users` WHERE posts.`departement_id` = $departement_id AND posts.user_id = users.id" . $add;
 		$query=mysql_query($sql, $connection);
 		$rslt = array();
 		$row = mysql_fetch_assoc($query);
@@ -179,12 +229,14 @@
 		$username = stripslashes($username);
 		$username = mysql_real_escape_string($username);
 		// SQL query to fetch information of registerd users and finds user match.
-		$query=mysql_query("SELECT users.uname, departements.dname, users.activated FROM `users`, `departements` WHERE `email`='$username' AND users.departement_id = departements.id", $connection);
+		$query=mysql_query("SELECT `users`.`id`, `users`.`role`, `users`.`uname`, `departements`.`dname`, `users`.`activated` FROM `users`, `departements` WHERE `email`='$username' AND `users`.`departement_id` = `departements`.`id`;", $connection);
 		$row = mysql_fetch_assoc($query);
 		$rslt = array();
 		$rslt['name'] = $row['uname'];
 		$rslt['departement'] = $row['dname'];
 		$rslt['activated'] = $row['activated'];
+		$rslt['id'] = $row['id'];
+		$rslt['role'] = $row['role'];
 		mysql_close($connection);
 		return $rslt;
 	}
