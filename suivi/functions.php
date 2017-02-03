@@ -1,4 +1,4 @@
-<?php 
+<?php
 	$dbhost = 'localhost:3306';
 	$dbuser = 'jecc';
 	$dbpass = 'ccej';
@@ -8,6 +8,36 @@
     	mb_language('uni'); 
     	mb_internal_encoding('UTF-8');
     	mysql_query("set names 'utf8'",$conn);
+	}
+
+	function get_posts($departement_id) {
+		GLOBAL $dbhost;
+		GLOBAL $dbuser;
+		GLOBAL $dbpass;
+		// Establishing Connection with Server by passing server_name, user_id and password as a parameter
+		$connection = mysql_connect($dbhost, $dbuser, $dbpass);
+		encoding_fix($connection);
+		// Selecting Database
+		$db = mysql_select_db("jecc_suivi", $connection);
+		// To protect MySQL injection for Security purpose
+		// SQL query to fetch information of registerd users and finds user match.
+		$sql = "SELECT posts.ptext, posts.pdate, posts.plink, posts.id, users.role, users.uname FROM `posts`, `users` WHERE posts.`departement_id` = $departement_id AND posts.user_id = users.id";
+		$query=mysql_query($sql, $connection);
+		$rslt = array();
+		$row = mysql_fetch_assoc($query);
+		$i = 0;
+		while($row) {
+			$rslt[$i]['id'] = $row['id'];
+			$rslt[$i]['ptext'] = $row['ptext'];
+			$rslt[$i]['plink'] = $row['plink'];
+			$rslt[$i]['uname'] = $row['uname'];
+			$rslt[$i]['urole'] = $row['role'];
+			$rslt[$i]['pdate'] = $row['pdate'];
+			$row = mysql_fetch_assoc($query);
+			$i++;
+		}
+		mysql_close($connection);
+		return $rslt;
 	}
 
 	function add_user($data) {
