@@ -30,7 +30,7 @@
 	if(! $retval ) {
 		die('Could not create user admin: ' . mysql_error());
 	}
-	$sql = 'CREATE TABLE IF NOT EXISTS `posts` (`id` int(11) NOT NULL, `user_id` int(11) NOT NULL, `ptext` text NOT NULL, `plink` text NOT NULL, `departement_id` int(11) NOT NULL);';
+	$sql = 'CREATE TABLE IF NOT EXISTS `posts` (`id` int(11) NOT NULL, `user_id` int(11) NOT NULL, `ptext` text NOT NULL, `plink` text NOT NULL, `pdate` text NOT NULL, `departement_id` int(11) NOT NULL);';
 	$retval = mysql_query( $sql, $conn );
 	if(! $retval ) {
 		die('Could not create table posts: ' . mysql_error());
